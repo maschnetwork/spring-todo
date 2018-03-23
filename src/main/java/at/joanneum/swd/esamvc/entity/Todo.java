@@ -1,14 +1,12 @@
 package at.joanneum.swd.esamvc.entity;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Todo {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
     @Column
@@ -26,15 +24,14 @@ public class Todo {
         this.description = description;
     }
 
-
     //Default Constructor for JPA
     protected Todo(){
 
     }
-
     public int getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
