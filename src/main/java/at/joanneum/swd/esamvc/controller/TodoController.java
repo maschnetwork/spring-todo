@@ -12,7 +12,7 @@ public class TodoController {
     TodoService todoService;
 
     @RequestMapping("/todo")
-    public void getTodos(){
-
+    public String getTodos(){
+        return "index";
     }
 }
