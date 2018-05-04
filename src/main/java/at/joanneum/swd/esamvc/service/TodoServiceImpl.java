@@ -13,27 +13,26 @@ import java.util.stream.Collectors;
 @Service
 public class TodoServiceImpl implements TodoService {
 
-    @Autowired
-    private TodoRepository todoRepository;
+    private final TodoRepository todoRepository;
 
+    @Autowired
+    public TodoServiceImpl(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
 
     @Override
     public List<TodoDTO> getTodos() {
-        List<TodoDTO> todoDTOList = todoRepository.findAll().stream().map(EntityToDTOMapper :: createDTOFromEntity).collect(Collectors.toList());
-
-        return todoDTOList;
+        return todoRepository.findAll().stream().map(EntityToDTOMapper :: createDTOFromEntity).collect(Collectors.toList());
     }
 
     @Override
     public TodoDTO getTodo(int id) {
-        TodoDTO todoDTO = new TodoDTO("", "");
-        todoDTO.getEntityFromDTO(todoRepository.findById(id));
-        return todoDTO;
+        return EntityToDTOMapper.createDTOFromEntity(todoRepository.findById(id));
     }
 
     @Override
     public void createTodo(TodoDTO todoDTO) {
-        Todo todo = new Todo(todoDTO.getName(), todoDTO.getDescription(), todoDTO.getDone());
+        Todo todo = new Todo(todoDTO.name, todoDTO.description, todoDTO.done);
         todoRepository.save(todo);
     }
 
@@ -45,11 +44,8 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public void updateTodo(TodoDTO todoDTO) {
-        Todo todo = todoRepository.findById(todoDTO.getId());
-        todo.setName(todoDTO.getName());
-        todo.setDescription(todoDTO.getDescription());
-        todo.setDone(todoDTO.getDone());
-
+        Todo todo = todoRepository.findById(todoDTO.id);
+        EntityToDTOMapper.createEntityFromDTO(todoDTO);
         todoRepository.save(todo);
     }
 }

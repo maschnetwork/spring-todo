@@ -43,16 +43,4 @@ public class Todo {
     public Boolean getDone() {
         return done;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDone(Boolean done) {
-        this.done = done;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
