@@ -3,6 +3,7 @@ package at.joanneum.swd.esamvc.service;
 import at.joanneum.swd.esamvc.dto.TodoDTO;
 import at.joanneum.swd.esamvc.entity.Todo;
 import at.joanneum.swd.esamvc.repository.TodoRepository;
+import at.joanneum.swd.esamvc.utility.EntityToDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,16 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<TodoDTO> getTodos() {
-        List<TodoDTO> todoDTOList = todoRepository.findAll().stream().map(TodoDTO :: new).collect(Collectors.toList());
+        List<TodoDTO> todoDTOList = todoRepository.findAll().stream().map(EntityToDTOMapper :: createDTOFromEntity).collect(Collectors.toList());
 
         return todoDTOList;
     }
 
     @Override
     public TodoDTO getTodo(int id) {
-        return new TodoDTO(todoRepository.findById(id));
+        TodoDTO todoDTO = new TodoDTO("", "");
+        todoDTO.getEntityFromDTO(todoRepository.findById(id));
+        return todoDTO;
     }
 
     @Override

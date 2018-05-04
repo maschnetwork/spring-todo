@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link th:href="@{css/materialize.min.css}" rel="stylesheet"/>
+    <link th:href="@{css/custom.css}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spring Todo Application</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">
+                    <i class="material-icons">toys</i>Spring Boot Todo</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>SNO</th>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>CITY</th>
+                <th>COUNTRY</th>
+            </tr>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.id}">001</td>
+                <td th:text="${todo.name}">Name</td>
+                <td th:text="${todo.description}">City</td>
+            </tr>
+        </table>
+
+    </main>
+
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2018 Maximilian Schreiber
+                <a class="grey-text text-lighten-4 right" href="https://github.com/maximilianschreiber/spring-todo">Find me on Github</a>
+            </div>
+        </div>
+    </footer>
+    <script th:src="@{/js/materialize.min.js}" rel="stylesheet"> </script>
+    <script th:src="@{/js/jquery.min.js}" rel="stylesheet"> </script>
+</body>
+
+</html>

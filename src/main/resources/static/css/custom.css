@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
+}
+
+.brand-logo{
+    margin-left: 5px;
+}
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left: 45%;
+  }
+
+.collection-item {
+    color: black !important;
+}
+
+#svg-stuff{
+    z-index: 9999;
+}
