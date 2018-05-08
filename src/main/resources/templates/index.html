@@ -14,29 +14,28 @@
     <nav>
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">
-                <i class="material-icons">toys</i>Spring Boot Todo</a>
+                <i class="material-icons">toys</i>Spring MVC Playground</a>
         </div>
     </nav>
 </header>
 <main>
     <div class="row">
-        <form class="col s6" th:action="@{/todo}" method="post" th:object="${todo}">
-            <div class="row">
+        <form class="col s12" action="/" method="post" id="todo-form">
+
                 <div class="input-field col s6">
-                    <input id="first_name" type="text" class="validate" name="name">
-                    <label for="first_name">First Name</label>
+                    <input id="name" type="text" class="validate" name="name">
+                    <label for="name">First Name</label>
                 </div>
                 <div class="input-field col s6">
                     <input id="last_name" type="text" class="validate">
                     <label for="last_name">Last Name</label>
                 </div>
-            </div>
-            <div class="row">
+
                 <div class="input-field col s12">
                     <input id="description" type="text" class="validate" name="description">
-                    <label for="last_name">Todo Description</label>
+                    <label for="description">Todo Description</label>
                 </div>
-            </div>
+
             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>
@@ -52,8 +51,8 @@
         </div>
     </div>
 </footer>
-<script th:src="@{/js/materialize.min.js}" rel="stylesheet"> </script>
-<script th:src="@{/js/jquery.min.js}" rel="stylesheet"> </script>
+<script th:src="@{/js/materialize.min.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/todo.js}"></script>
 </body>
-
 </html>

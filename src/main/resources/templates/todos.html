@@ -14,25 +14,27 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo center">
-                    <i class="material-icons">toys</i>Spring Boot Todo</a>
+                    <i class="material-icons">toys</i>Spring MVC Playground</a>
             </div>
         </nav>
     </header>
     <main>
-        <table>
-            <tr>
-                <th>SNO</th>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>CITY</th>
-                <th>COUNTRY</th>
-            </tr>
-            <tr th:each="todo : ${todos}">
-                <td th:text="${todo.id}">001</td>
-                <td th:text="${todo.name}">Name</td>
-                <td th:text="${todo.description}">City</td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col s6">
+                <ul class="collection">
+                    <li th:each="todo : ${todos}" class="collection-item avatar">
+                        <span th:text="${todo.name}">Title</span>
+                        <p th:text="${todo.description}">First Line</p>
+
+                        <label class="secondary-content">
+                            <input type="checkbox" />
+                            <span>Done</span>
+                            <i class="material-icons">delete</i>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
     </main>
 

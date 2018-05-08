@@ -29,6 +29,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.flywaydb:flyway-core')
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.5'
+
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

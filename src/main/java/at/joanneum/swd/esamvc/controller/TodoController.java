@@ -13,15 +13,13 @@ public class TodoController {
     @Autowired
     TodoService todoService;
 
+    public TodoController(TodoService todoService){
+        this.todoService = todoService;
+    }
+
     @RequestMapping("/todos")
     public String getTodos(Model model){
         model.addAttribute("todos", todoService.getTodos());
         return "todos";
-    }
-
-    @RequestMapping(value="/todo", method= RequestMethod.POST)
-    public String addTodo(@ModelAttribute TodoDTO todoDTO){
-        todoService.createTodo(todoDTO);
-        return "index";
     }
 }
