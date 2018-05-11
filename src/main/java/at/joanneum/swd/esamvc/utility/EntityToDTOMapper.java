@@ -16,8 +16,7 @@ public  class EntityToDTOMapper {
     }
 
     public static Todo createEntityFromDTO(TodoDTO todoDTO){
-        Todo todo = new Todo(todoDTO.name,todoDTO.description, todoDTO.done);
-        return todo;
+        return new Todo(todoDTO.name,todoDTO.description, todoDTO.done);
     }
 }
 

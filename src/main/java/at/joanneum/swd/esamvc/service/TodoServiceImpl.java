@@ -32,7 +32,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public void createTodo(TodoDTO todoDTO) {
-        Todo todo = new Todo(todoDTO.name, todoDTO.description, todoDTO.done);
+        Todo todo = EntityToDTOMapper.createEntityFromDTO(todoDTO);
         todoRepository.save(todo);
     }
 
