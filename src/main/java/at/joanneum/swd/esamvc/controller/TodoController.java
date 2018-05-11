@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class TodoController {
 
-    @Autowired
-    TodoService todoService;
+    private TodoService todoService;
 
+    @Autowired
     public TodoController(TodoService todoService){
         this.todoService = todoService;
     }
@@ -21,5 +21,11 @@ public class TodoController {
     public String getTodos(Model model){
         model.addAttribute("todos", todoService.getTodos());
         return "todos";
+    }
+
+    @RequestMapping(value= "/todos/{id}", method = RequestMethod.GET)
+    public String getTodo(Model model, @PathVariable int id){
+        model.addAttribute("todo", todoService.getTodo(id));
+        return "todo_detail";
     }
 }

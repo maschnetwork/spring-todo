@@ -7,11 +7,10 @@ function formToJSON(form) {
     return JSON.stringify(returnArray);
 }
 
-$("#todo-form").submit(function(e) {
-    var url = "/todo";
+function createTodo(e) {
     $.ajax({
         type: "POST",
-        url: url,
+        url: "/todo",
         contentType: "application/json",
         data: formToJSON($("#todo-form")),
         success: function() {
@@ -19,7 +18,62 @@ $("#todo-form").submit(function(e) {
             M.toast({html: "Todo created"});
         }
     });
-
     e.preventDefault();
+};
+
+function setTodoToDone () {
+    var el = $(this);
+    var todoId = el.data('id');
+    $.ajax({
+        type: "PUT",
+        url: "/todo/"+todoId+"/status",
+        contentType: "application/json",
+        data: JSON.stringify({done: el.prop("checked")}),
+        success: function() {
+            M.toast({html: "Todo updated"});
+        }
+    });
+}
+
+function deleteTodo() {
+    var el = $(this);
+    var todoId = el.data('id');
+    $.ajax({
+        type: "DELETE",
+        url: "/todo/"+todoId,
+        data: "",
+        success: function() {
+            M.toast({html: "Todo deleted"});
+            window.location.href = "/todos";
+        },
+        error: function(err){
+            console.log(err);
+        }
+    });
+};
+
+function updateTodo(e) {
+    var todoID = $("#todo-id").val();
+    $.ajax({
+        type: "PUT",
+        url: "/todo/"+todoID,
+        contentType: "application/json",
+        data: formToJSON($("#todo-update-form")),
+        success: function() {
+            M.toast({html: "Todo updated"});
+            window.location.href = "/todos";
+        }
+    });
+    e.preventDefault();
+};
+
+
+
+$(document).ready(function() {
+    $(document).on('change', '.done-checkbox', setTodoToDone);
+    $(document).on('click', '#delete-todo', deleteTodo);
+    $(document).on('submit', '#todo-form', createTodo);
+    $(document).on('submit', '#todo-update-form', updateTodo);
 });
+
 

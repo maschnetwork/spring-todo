@@ -22,7 +22,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<TodoDTO> getTodos() {
-        return todoRepository.findAll().stream().map(EntityToDTOMapper :: createDTOFromEntity).collect(Collectors.toList());
+        return todoRepository.findAllByOrderById().stream().map(EntityToDTOMapper :: createDTOFromEntity).collect(Collectors.toList());
     }
 
     @Override
@@ -43,9 +43,17 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void updateTodo(TodoDTO todoDTO) {
-        Todo todo = todoRepository.findById(todoDTO.id);
-        EntityToDTOMapper.createEntityFromDTO(todoDTO);
+    public void updateTodo(TodoDTO todoDTO, int id) {
+        Todo todo = todoRepository.findById(id);
+        todo.setName(todoDTO.name);
+        todo.setDescription(todoDTO.description);
+        todoRepository.save(todo);
+    }
+
+    @Override
+    public void updateTodoDoneStatus(int id, boolean status) {
+        Todo todo = todoRepository.findById(id);
+        todo.setDone(status);
         todoRepository.save(todo);
     }
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link th:href="@{/css/materialize.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/custom.css}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spring Todo Application</title>
+    <script th:src="@{/js/materialize.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/todo.js}"></script>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">
+                <i class="material-icons">toys</i>Spring MVC Playground</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <form action="/" method="post" id="todo-update-form">
+            <input type="hidden" name="id" id="todo-id" th:value="${todo.id}"/>
+            <div class="input-field col s6">
+                <input id="name" type="text" class="validate" name="name" th:value="${todo.name}">
+                <label for="name">Todo Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="description" type="text" class="validate" name="description" th:value="${todo.description}">
+                <label for="description">Description</label>
+            </div>
+            <br><br>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Update Todo
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+        <a id="delete-todo"  th:attr="data-id=${todo.id}" class="btn-floating btn-large waves-effect waves-light red right" href="#"><i class="material-icons">delete</i></a>
+    </div>
+</main>
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2018 Maximilian Schreiber
+            <a class="grey-text text-lighten-4 right" href="https://github.com/maximilianschreiber/spring-todo">Find me on Github</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

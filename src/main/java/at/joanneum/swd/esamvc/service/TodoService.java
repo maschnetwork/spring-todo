@@ -10,7 +10,8 @@ public interface TodoService {
     TodoDTO getTodo(int id);
     void createTodo(TodoDTO todoDTO);
     void deleteTodo(int id);
-    void updateTodo(TodoDTO todoDTO);
+    void updateTodo(TodoDTO todoDTO, int id);
+    void updateTodoDoneStatus(int id, boolean status);
 
 
 }
