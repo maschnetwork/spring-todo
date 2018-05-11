@@ -2,7 +2,7 @@ package at.joanneum.swd.esamvc.enums;
 
 public enum Template {
 
-    TODO_CREATE("index"),
+    TODO_CREATE("todo_create"),
     TODO_DETAIL("todo_detail"),
     TODO_LIST("todos");
 
