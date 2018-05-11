@@ -1,6 +1,7 @@
 package at.joanneum.swd.esamvc.controller;
 
 import at.joanneum.swd.esamvc.dto.TodoDTO;
+import at.joanneum.swd.esamvc.enums.Template;
 import at.joanneum.swd.esamvc.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,12 @@ public class TodoController {
     @RequestMapping("/todos")
     public String getTodos(Model model){
         model.addAttribute("todos", todoService.getTodos());
-        return "todos";
+        return Template.TODO_LIST.getName();
     }
 
     @RequestMapping(value= "/todos/{id}", method = RequestMethod.GET)
     public String getTodo(Model model, @PathVariable int id){
         model.addAttribute("todo", todoService.getTodo(id));
-        return "todo_detail";
+        return Template.TODO_DETAIL.getName();
     }
 }

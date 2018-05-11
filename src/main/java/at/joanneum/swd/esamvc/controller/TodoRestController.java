@@ -1,15 +1,12 @@
 package at.joanneum.swd.esamvc.controller;
 
-
 import at.joanneum.swd.esamvc.dto.TodoDTO;
 import at.joanneum.swd.esamvc.service.TodoService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+
 
 @RestController
 public class TodoRestController {
